@@ -1,0 +1,50 @@
+name: "CSVLinter Action"
+description: "Run csvlinter against CSV files in your repository (CI‑friendly)."
+branding:
+  icon: "align-justify"
+  color: "green"
+
+inputs:
+  paths:
+    description: >
+      One or more glob patterns that select CSV files (e.g. **/*.csv, data/**/*.csv).
+      Separate multiple patterns with commas.
+    required: false
+    default: "**/*.csv"
+  csvlinter_version:
+    description: "Version tag of csvlinter to download (e.g. v1.3.1). Use 'latest' for the newest release."
+    required: false
+    default: "latest"
+  schema:
+    description: "Optional path to a JSON‑Schema file or directory. If omitted, colocated/parent schemas are auto‑detected."
+    required: false
+    default: ""
+  delimiter:
+    description: "Override delimiter character (e.g. ';')."
+    required: false
+    default: ","
+  fail_fast:
+    description: "Stop validation after the first row error is encountered (true/false)."
+    required: false
+    default: "false"
+  max_failures:
+    description: >
+      Maximum number of failing files before the job aborts early to keep logs short. 0 = unlimited.
+    required: false
+    default: "0"
+
+outputs:
+  files_checked:
+    description: "Total number of CSV files linted."
+    value: "${{ steps.lint.outputs.files_checked }}"
+  errors_found:
+    description: "Total number of CSV files that failed validation."
+    value: "${{ steps.lint.outputs.errors_found }}"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Run csvlinter"
+      id: lint
+      shell: bash
+      run: ./scripts/run.sh
