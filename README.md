@@ -6,6 +6,14 @@ Validate every CSV in your repository with [`csvlinter`](https://github.com/csvl
 
 ---
 
+## Related Projects
+
+- **[csvlinter CLI](https://github.com/csvlinter/csvlinter):** Command-line tool for validating CSV files and schemas.
+
+- **[VS Code Extension](https://github.com/csvlinter/vscode-extension):** Lint and validate CSV files directly in Visual Studio Code.
+
+---
+
 ## Quick start
 
 ```yaml
