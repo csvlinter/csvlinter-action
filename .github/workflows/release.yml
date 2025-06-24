@@ -1,0 +1,35 @@
+name: Release
+
+# Automatically tags and publishes a GitHub Release whenever a commit
+# that follows Conventional Commits is merged to `main`.
+# No build artefacts are needed for this Action repository, so a single
+# semantic‑release step is enough.
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Semantic Release
+        uses: Sujimoshi/semantic-release-action@v1.8.0
+        with:
+          branches: |
+            main
+          plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/release-notes-generator
+            @semantic-release/changelog
+            @semantic-release/github
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
