@@ -1,6 +1,7 @@
 # CSV Linter GitHub Action
 
-[![CI](https://img.shields.io/github/actions/workflow/status/csvlinter/csvlinter-action/test.yml?label=CSV%20Linter\&logo=github)](https://github.com/csvlinter/csvlinter-action/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/csvlinter/csvlinter-action/pr.yml?branch=main&label=CI&logo=github)](https://github.com/csvlinter/csvlinter-action/actions)
+
 
 Validate every CSV in your repository with [`csvlinter`](https://github.com/csvlinter/csvlinter) as part of your workflow. The action downloads the requested version of the CLI, expands glob patterns, and surfaces schema / structural errors as workflow annotations.
 
